@@ -11,5 +11,36 @@ const firebaseConfig = {
 
   const database = firebase.database();
 
+  $("#button").on("click", function(event) {
+    event.preventDefault();
   
+    //form input
+  const trainName = $("#trainName-input").val().trim();
+  const destination = $("#destination-input").val().trim();
+  const firstTrainTime = $("#firstTrainTime-input").val().trim();
+  const frequency = $("#frequency-input").val().trim();
+  
+  const newTrain = {
+    train: trainName,
+    dest: destination,
+    firstTrain: firstTrainTime,
+    freq: frequency
+  };
+
+  //sends train info to firebase
+  database.ref().push(newTrain);
+
+  console.log(newTrain.train);
+  console.log(newTrain.firstTrain);
+  console.log(newTrain.dest);
+  console.log(newTrain.freq);
+
+  alert("Train will be arriving soon!");
+
+  $("#trainName-input").val("");
+  $("#destination-input").val("")
+  $("#firstTrainTime-input").val("");
+  $("#frequency-input").val("");
+  
+  });
   
